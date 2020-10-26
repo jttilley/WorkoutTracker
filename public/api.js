@@ -3,12 +3,12 @@ const API = {
     let res;
     try {
       res = await fetch("/api/workouts");
-      console.log('getlastWorkout res: ', res);
+      // console.log('getlastWorkout res: ', res);
     } catch (err) {
       console.log(err)
     }
     const json = await res.json();
-    console.log('this json: ', json);
+    // console.log('this json: ', json);
 
     return json[json.length - 1];
   },
