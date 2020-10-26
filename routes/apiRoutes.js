@@ -1,18 +1,24 @@
 const router = require("express").Router();
+const mongoose = require("mongoose");
 const Workouts = require("../models/workouts");
 
 // get all workouts
 router.get("/api/workouts", (req, res) => {
+  // console.log('in api/workouts');
   Workouts.find({}).then(all => {
+    // console.log('all: ', all);
     res.json(all);
   }).catch(err => {
+    // console.log('get all workouts err: ', err);
     res.status(400).json(err);
   });
 });
 
 // create a workout
 router.post("/api/workouts", ({ body }, res) => {
-  Workouts.create(body).then(result => {
+  // console.log('create workout body: ', body);
+  Workouts.create({}).then(result => {
+    // console.log('result: ', result);
     res.json(result);
   }).catch(err => {
     res.status(400).json(err);
@@ -21,8 +27,11 @@ router.post("/api/workouts", ({ body }, res) => {
 
 // add an exercise
 router.put("/api/workouts/:id", ({ body, params }, res) => {
-  Workouts.findOneAndUpdate({_id: params.id}, { $push: { body } }, { new: true })
+  // console.log('params: ', params);
+  // console.log('body: ', body);
+  Workouts.findOneAndUpdate({_id: params.id}, { $push: { exercises: body } }, { new: true })
     .then(result => {
+      // console.log('result: ', result);
       res.json(result);
     }).catch(err => {
       res.status(400).json(err);
