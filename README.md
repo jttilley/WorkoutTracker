@@ -32,7 +32,17 @@ HTTP, CSS, JavaScript, Bootstrap, jQuery, ES6, Node.js, express, path, Mongoose 
     
 
 ## Example
-![example](./public/images/Workout_Tracker.png)
+It shows you the stats from your last workout:
+![start](./public/images/Last_Workout.png)
+
+You can add a resistance exercise:
+![resistance](./public/images/Resistance.png)
+
+or a cardio exercise:
+![cardio](./public/images/Cardio.png)
+
+And then you can see your stats for the week:
+![stats](./public/images/Workout_Tracker.png)
 
 ## Installation
 To install the necessary denpendencies, run the following command:
