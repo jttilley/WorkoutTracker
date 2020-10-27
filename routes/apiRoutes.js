@@ -29,13 +29,15 @@ router.post("/api/workouts", ({ body }, res) => {
 router.put("/api/workouts/:id", ({ body, params }, res) => {
   // console.log('params: ', params);
   // console.log('body: ', body);
-  Workouts.findOneAndUpdate({_id: params.id}, { $push: { exercises: body } }, { new: true })
-    .then(result => {
-      // console.log('result: ', result);
-      res.json(result);
-    }).catch(err => {
-      res.status(400).json(err);
-    });
+  if (body.name !== "") {
+    Workouts.findOneAndUpdate({_id: params.id}, { $push: { exercises: body } }, { new: true })
+      .then(result => {
+        // console.log('result: ', result);
+        res.json(result);
+      }).catch(err => {
+        res.status(400).json(err);
+      });
+  }
 });
 
 // get workouts in a range

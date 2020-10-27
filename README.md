@@ -42,7 +42,7 @@ or a cardio exercise:
 ![cardio](./public/images/Cardio.png)
 
 And then you can see your stats for the week:
-![stats](./public/images/Workout_Tracker.png)
+![stats](./public/images/Stats.png)
 
 ## Installation
 To install the necessary denpendencies, run the following command:
