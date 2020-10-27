@@ -41,7 +41,7 @@ You can add a resistance exercise:
 or a cardio exercise:
 ![cardio](./public/images/Cardio.png)
 
-And then you can see your stats for the week:
+And then you can see your stats charted out:
 ![stats](./public/images/Stats.png)
 
 ## Installation
