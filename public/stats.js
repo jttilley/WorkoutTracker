@@ -49,8 +49,10 @@ API.getWorkoutsInRange()
   
 
   function populateChart(data) {
+    let totalDurations = getTotalDurations(data)
     let durations = duration(data);
     let pounds = calculateTotalWeight(data);
+    let weights = getWeights(data);
     let workouts = workoutNames(data);
     const colors = generatePalette(data);
     let dates = getDates(data);
@@ -70,7 +72,7 @@ API.getWorkoutsInRange()
             label: "Workout Duration In Minutes",
             backgroundColor: "red",
             borderColor: "red",
-            data: durations,
+            data: totalDurations,
             fill: false
           }
         ]
@@ -160,7 +162,7 @@ API.getWorkoutsInRange()
           {
             label: "Excercises Performed",
             backgroundColor: colors,
-            data: pounds
+            data: weights
           }
         ]
       },
@@ -173,7 +175,7 @@ API.getWorkoutsInRange()
     });
   }
 
-function duration(data) {
+function getTotalDurations(data) {
   let durations = [];
 
   data.forEach(workout => {
@@ -181,6 +183,18 @@ function duration(data) {
     // workout.exercises.forEach(exercise => {
     //   durations.push(exercise.duration);
     // });
+  });
+
+  return durations;
+}
+
+function duration(data) {
+  let durations = [];
+
+  data.forEach(workout => {
+    workout.exercises.forEach(exercise => {
+      durations.push(exercise.duration);
+    });
   });
 
   return durations;
@@ -230,13 +244,25 @@ function calculateTotalWeight(data) {
   data.forEach(workout => {
     let totalWeight = 0;
     workout.exercises.forEach(exercise => {
-      totalWeight += exercise.weight; // calculate the total weight
+      if (exercise.weight) {
+        totalWeight += exercise.weight; // calculate the total weight
+      }
       // total.push(exercise.weight);
     });
     total.push(totalWeight); //push total weight
   });
 
   return total;
+}
+
+function getWeights(data) {
+  let weights = [];
+  data.forEach(workout => {
+    workout.exercises.forEach( exercise => {
+      weights.push(exercise.weight);
+    });
+  });
+  return weights;
 }
 
 function workoutNames(data) {
